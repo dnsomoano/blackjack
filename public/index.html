@@ -3,11 +3,31 @@
   <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Y</title>
+    <title>BlackJack</title>
     <link rel="stylesheet" href="/screen.css">
   </head>
   <body>
-    <h1>Hello, World!</h1>
+    <h1>Welcome to Black Jack!</h1>
+    <section class="main-container">
+    <nav class="hit-container">
+      <ul>
+        <li>
+          <button class="hit-button">Hit</button>
+        </li>
+        </ul>
+    </nav>
+    <nav class="stand-container">
+      <ul>
+        <li>
+          <button class="stand-button">Stand</button>
+        </li>
+      </ul>
+    </nav>
+  </section>
+    <nav class="results-container">
+      <span>Results</span>
+      <ul id="random-result"></ul>
+    </nav>
     <script src="/main.js" charset="utf-8"></script>
   </body>
 </html>
