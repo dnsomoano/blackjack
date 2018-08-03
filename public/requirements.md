@@ -7,16 +7,16 @@
 
 // create an object with properties
 const _usr = {
-    name: "borg"
-    occupation:
-    age
+    name: "borg",
+    occupation: ,
+    age ,
 }
 
-// name of funct is key value
+// name of function is key value
 const card = {
-    value: ""
-    suit: ""
-    rank: ""
+    value: "",
+    suit: "",
+    rank: "",
 }
 
 // call object
@@ -32,7 +32,7 @@ card.rank = "new rank"
     - [ ] store amount paid, per person
     - [ ] 
 
-const _ticketsBought = parseInt(document.querselector('# of tickets box).value);
+const _ticketsBought = parseInt(document.queryselector('# of tickets box).value);
 
 const buyer = {
     name: document.querySelector ('name-textbox').value

@@ -9,10 +9,10 @@
 // }
 // document.addEventListener('DOMContentLoaded', main)
 // Starting arrays
-const suits = [ 'clubs', 'diamonds', 'hearts', 'spades' ];
-const ranks = [ 'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King' ];
+const suits = ['clubs', 'diamonds', 'hearts', 'spades'];
+const ranks = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
 // Parallel array
-const valueArray = [ 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 ];
+const valueArray = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
 
 let deck = [];
 
@@ -30,10 +30,10 @@ const createDeck = () => {
 				rank: ranks[i],
 				suit: suits[j]
 			});
-			// Call list of cards
-			console.log(deck);
 		}
 	}
+	// Call list of cards
+	console.log(deck);
 	// Call length of array to confirm 52 cards
 	console.log(deck.length);
 };
@@ -53,25 +53,36 @@ let shuffle = () => {
 	// pop method removes the last element in the array deck
 };
 
-const resultCard = () => {
-	for (let index = 0; index < 2; index++) {
-		let hand = deck.pop();
-		// debug message for pop value
-		console.log(hand);
-		// Create new line element for result
-		const newLi = document.createElement('li');
-		// New line writes the last element named hand
-		newLi.textContent = hand.rank + " of " + hand.suit;
-		// Calls new line back to the DOM
-		document.querySelector('#random-result').appendChild(newLi);
+const dealHands = () => {
+	for (let index = 0; index < 4; index++) { // Infinite loop
+		if (index = 1) {
+			let dealerHand = deck.pop(2);
+			console.log(dealerHand); // err
+		} else {
+			let hand = deck.pop();
+			// debug message for pop value
+			console.log(hand);
+			// Create new line element for result
+			const newLi = document.createElement('li');
+			// New line writes the last element named hand
+			newLi.textContent = hand.rank + ' of ' + hand.suit;
+			// Calls new line back to the DOM
+			document.querySelector('#random-result').appendChild(newLi);
+		}
 	}
 };
 
 const main = () => {
 	createDeck();
 	shuffle();
-	resultCard();
+	dealHands();
 };
+
+// };
+// const exitGame = () = {
+
+// }
 
 // Event listeners
 document.querySelector('.hit-button').addEventListener('click', main);
+// document.querySelector("stand-button").addEventListener("click", exitGame)
