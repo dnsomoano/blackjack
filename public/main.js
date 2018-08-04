@@ -9,12 +9,14 @@
 // }
 // document.addEventListener('DOMContentLoaded', main)
 // Starting arrays
-const suits = ['clubs', 'diamonds', 'hearts', 'spades'];
-const ranks = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
+const suits = [ 'clubs', 'diamonds', 'hearts', 'spades' ];
+const ranks = [ 'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King' ];
 // Parallel array
-const valueArray = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
+const valueArray = [ 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 ];
 
 let deck = [];
+const playerHand = [];
+const dealerHand = [];
 
 // Creates array of deck
 const createDeck = () => {
@@ -52,30 +54,50 @@ let shuffle = () => {
 	}
 	// pop method removes the last element in the array deck
 };
-
-const dealHands = () => {
-	for (let index = 0; index < 4; index++) { // Infinite loop
-		if (index = 1) {
-			let dealerHand = deck.pop(2);
-			console.log(dealerHand); // err
-		} else {
-			let hand = deck.pop();
-			// debug message for pop value
-			console.log(hand);
-			// Create new line element for result
-			const newLi = document.createElement('li');
-			// New line writes the last element named hand
-			newLi.textContent = hand.rank + ' of ' + hand.suit;
-			// Calls new line back to the DOM
-			document.querySelector('#random-result').appendChild(newLi);
-		}
+const cardsDealt = () => {
+	// Loop for dealer's hand
+	for (let dealerIndex = 0; dealerIndex < 2; dealerIndex++) {
+		dealerHand.push(deck.pop());
+		//
+		const newLi = document.createElement('li');
+		// New line writes the last element named hand
+		newLi.textContent = dealerHand.rank + ' of ' + dealerHand.suit;
+		// Calls new line back to the DOM
+		document.querySelector('#random-result').appendChild(newLi);
+		console.log(dealerHand);
 	}
+
+	// Loop for player's hand
+	for (let playerIndex = 0; playerIndex < 2; playerIndex++) {
+
+		playerHand.push(deck.pop());
+
+		// debug message for pop value
+		console.log(playerHand);
+
+		// Create new line element for result
+		const newLi = document.createElement('li');
+
+		// New line writes the last element named hand
+		newLi.textContent = playerHand.rank + ' of ' + playerHand.suit;
+
+		// Calls new line back to the DOM
+		document.querySelector('#random-result').appendChild(newLi);
+	}
+
+	// Total value of player's hand
+	// let playerTotal ;
+	// for (let index = 0; index < playerHand.length; index++) {
+	// 	console.log( playerHand[index].value);
+	// }
+	// console.log(playerHand.value);
+	// //console.log(playerTotal);
 };
 
 const main = () => {
 	createDeck();
 	shuffle();
-	dealHands();
+	cardsDealt();
 };
 
 // };
