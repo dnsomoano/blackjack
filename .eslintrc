@@ -3,7 +3,7 @@
     "standard"
   ],
   "rules": {
-      "semi": ["error", false],
+      "semi": ["error", "always"],
       "quotes": ["error", "double"]
   }
 }

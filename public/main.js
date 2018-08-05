@@ -49,7 +49,7 @@ const createDeck = () => {
     for (let j = 0; j < suits.length; j++) {
       // Object is created within deck array, creating an object array
       deck.push(
-        (cards = {
+        ({
           // value equals the corresponding value within valueArray
           value: valueArray[i],
           rank: ranks[i],
@@ -120,10 +120,10 @@ const hitMe = () => {
   playerTotal = parseInt(playerHand[0].value + playerHand[1].value, 10);
   console.log(playerTotal);
   // Pops player's 3rd card
-  hitIndex = document.querySelector(".hit-button").value; // TODO if player presses hit button twice, hit again
+  // hitIndex = document.querySelector(".hit-button").value; // TODO if player presses hit button twice, hit again
   for (let hitIndex = 0; hitIndex < 1; hitIndex++) {
     playerHand.push(deck.pop());
-    playerValue = playerTotal + parseInt(playerHand[2].value, 10);
+    let playerValue = playerTotal + parseInt(playerHand[2].value, 10);
     // debug msg
     console.log(playerValue);
     if (playerValue > 21) {
@@ -150,11 +150,12 @@ const hitMe = () => {
 };
 
 let exitGame = () => {
+  const blackJack = 21;
   dealerTotal = parseInt(dealerHand[0].value + dealerHand[1].value, 10);
   // if dealerHand values are less than 17, push another card
   if (dealerTotal < 17) {
     dealerHand.push(deck.pop());
-    dealerValue = dealerTotal + parseInt(dealerHand[2].value, 10);
+    let dealerValue = dealerTotal + parseInt(dealerHand[2].value, 10);
     console.log(dealerValue);
     // Creates element in the Dom named newLi
     const newLi = document.createElement("li");
@@ -175,7 +176,7 @@ let exitGame = () => {
     document.querySelector("#random-result").appendChild(newLi3);
     document.querySelector("#random-result").appendChild(newLi4);
     // playAgain();
-  } else if ((dealerTotal = 21)) {
+  } else if (dealerTotal = blackJack) {
     console.log(dealerTotal);
     // Creates element in the Dom named newLi
     const newLi = document.createElement("li");
@@ -193,7 +194,6 @@ let exitGame = () => {
     document.querySelector("#random-result").appendChild(newLi2);
     document.querySelector("#random-result").appendChild(newLi3);
     // playAgain();
-    return;
   } else {
     console.log("Dealer bust");
     // Creates element in the Dom named newLi
