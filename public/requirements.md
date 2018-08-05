@@ -1,41 +1,9 @@
-// let cardPath "./images/"+hand+;
-// Image.setAttribute("src", cardPath)
-// transform: rotate()
-//transform: spin()
-
-------
-
-// create an object with properties
-const _usr = {
-    name: "borg",
-    occupation: ,
-    age ,
-}
-
-// name of function is key value
-const card = {
-    value: "",
-    suit: "",
-    rank: "",
-}
-
-// call object
-card.rank
-
-// update prop
-card.rank = "new rank"
-
----------------------
-
-- [ ] user can buy multiple tickets
-    - [ ] add textbox to see how many tickets they bought
-    - [ ] store amount paid, per person
-    - [ ] 
-
-const _ticketsBought = parseInt(document.queryselector('# of tickets box).value);
-
-const buyer = {
-    name: document.querySelector ('name-textbox').value
-    tickets: document.queryselector('# of tickets box').value
-    amountPaid: 
-}
+- [X] The game should be played with a standard deck of playing cards (52).
+- [X] The house should be dealt two cards, hidden from the player until the house reveals its hand.
+    - for each 1 store card in dealer array
+- [X] The player should be dealt a hand that contains two cards, visible to the player.
+    - for each 1 store card in dealer array
+- [ ] The player should have a chance to hit (i.e. be dealt another card) until they decide to stop or they bust (i.e. their total is over 21 ).
+    - if player array > 1, pop a 3rd card
+- [ ] When the player stands, the house will reveal its hand and hit (i.e. draw cards) until they have 17 or more.
+- [ ] If either the house or the player bust, they lose.

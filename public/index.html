@@ -1,33 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BlackJack</title>
-    <link rel="stylesheet" href="/screen.css">
-  </head>
-  <body>
-    <h1>Welcome to Black Jack!</h1>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BlackJack</title>
+  <link rel="stylesheet" href="/screen.css">
+</head>
+
+<body>
+  <section class="top-level">
+    <section class="header">
+      <h1><span>Welcome to Black Jack!</span></h1>
+      <button class="start-button">Press to start game</button>
+    </section>
     <section class="main-container">
-    <nav class="hit-container">
-      <ul>
-        <li>
-          <button class="hit-button">Hit</button>
-        </li>
+      <nav class="hit-container">
+        <ul>
+          <li>
+            <button class="hit-button">Hit</button>
+          </li>
         </ul>
-    </nav>
-    <nav class="stand-container">
-      <ul>
-        <li>
-          <button class="stand-button">Stand</button>
-        </li>
+      </nav>
+      <nav class="stand-container">
+        <ul>
+          <li>
+            <button class="stand-button">Stand</button>
+          </li>
+        </ul>
+      </nav>
+    </section>
+    <nav class="results-container">
+      <button class="result-button">Click to reveal</button>
+      <ul id="random-result">
       </ul>
     </nav>
-  </section>
-    <nav class="results-container">
-      <span>Results</span>
-      <button id="random-result"><span>Click to reveal</span></ul>
-    </nav>
     <script src="/main.js" charset="utf-8"></script>
-  </body>
+</body>
+</section>
+
 </html>
