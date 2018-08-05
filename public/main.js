@@ -120,6 +120,7 @@ const hitMe = () => {
   playerTotal = parseInt(playerHand[0].value + playerHand[1].value, 10);
   console.log(playerTotal);
   // Pops player's 3rd card
+  hitIndex = document.querySelector(".hit-button").value; // TODO if player presses hit button twice, hit again
   for (let hitIndex = 0; hitIndex < 1; hitIndex++) {
     playerHand.push(deck.pop());
     playerValue = playerTotal + parseInt(playerHand[2].value, 10);
@@ -173,7 +174,7 @@ let exitGame = () => {
     document.querySelector("#random-result").appendChild(newLi2);
     document.querySelector("#random-result").appendChild(newLi3);
     document.querySelector("#random-result").appendChild(newLi4);
-    playAgain();
+    // playAgain();
   } else if ((dealerTotal = 21)) {
     console.log(dealerTotal);
     // Creates element in the Dom named newLi
@@ -191,7 +192,7 @@ let exitGame = () => {
     document.querySelector("#random-result").appendChild(newLi);
     document.querySelector("#random-result").appendChild(newLi2);
     document.querySelector("#random-result").appendChild(newLi3);
-    playAgain();
+    // playAgain();
     return;
   } else {
     console.log("Dealer bust");
@@ -201,16 +202,16 @@ let exitGame = () => {
     newLi.textContent = "The dealer busted! Player wins!";
     // Calls new line back to the DOM
     document.querySelector("#random-result").appendChild(newLi);
-    playAgain();
+    // playAgain();
   }
 };
 
-const playAgain = () => {
-  const newLi = document.createElement("button");
-  button.addEventListener("click", window.location.reload()); // TODO fix play again button
-  document.querySelector("#random-result").appendChild(newLi);
-  window.location.reload();
-}
+// const playAgain = () => {
+//   const newLi = document.createElement("button");
+//   button.addEventListener("click", window.location.reload()); // TODO fix play again button
+//   document.querySelector("#random-result").appendChild(newLi);
+//   window.location.reload();
+// }
 
 // mainline logic
 const main = () => {
