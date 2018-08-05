@@ -3,7 +3,8 @@
     - for each 1 store card in dealer array
 - [X] The player should be dealt a hand that contains two cards, visible to the player.
     - for each 1 store card in dealer array
-- [ ] The player should have a chance to hit (i.e. be dealt another card) until they decide to stop or they bust (i.e. their total is over 21 ).
+- [X] The player should have a chance to hit (i.e. be dealt another card) until they decide to stop or they bust (i.e. their total is over 21 ).
     - if player array > 1, pop a 3rd card
-- [ ] When the player stands, the house will reveal its hand and hit (i.e. draw cards) until they have 17 or more.
-- [ ] If either the house or the player bust, they lose.
+- [X] When the player stands, the house will reveal its hand and hit (i.e. draw cards) until they have 17 or more.
+- [X] If either the house or the player bust, they lose.
+- [ ] Create option to play again.

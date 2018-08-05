@@ -32,6 +32,12 @@ const valueArray = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
 let deck = [];
 const playerHand = [];
 const dealerHand = [];
+let playerTotal;
+let dealerTotal;
+
+// const getPlayerTotal = () => {
+//   let playerTotal = playerHand[0].value + playerHand[1].value;
+// }
 
 // Creates array of deck
 const createDeck = () => {
@@ -42,12 +48,14 @@ const createDeck = () => {
     // second loop
     for (let j = 0; j < suits.length; j++) {
       // Object is created within deck array, creating an object array
-      deck.push(cards = {
-        // value equals the corresponding value within valueArray
-        value: valueArray[i],
-        rank: ranks[i],
-        suit: suits[j]
-      });
+      deck.push(
+        (cards = {
+          // value equals the corresponding value within valueArray
+          value: valueArray[i],
+          rank: ranks[i],
+          suit: suits[j]
+        })
+      );
     }
   }
   // Call list of cards
@@ -72,7 +80,6 @@ let shuffle = () => {
 
 // First hit for both players
 const cardsDealt = () => {
-
   // Loop for player's hand
   for (let playerIndex = 0; playerIndex < 2; playerIndex++) {
     // Loop for dealer's hand
@@ -82,23 +89,128 @@ const cardsDealt = () => {
     }
     // pop, then push to the player's hand
     playerHand.push(deck.pop());
+    // now playerTotal is initiated
     // Creates element in the Dom named newLi
     const newLi = document.createElement("li");
     // New line writes the player's hand calling the index values(playerIndex) each iteration
-    newLi.textContent = "The player has " + playerHand[playerIndex].rank + " of " + playerHand[playerIndex].suit; // TODO fix displayed value of undefined
+    newLi.textContent =
+      "The player has " +
+      playerHand[playerIndex].rank +
+      " of " +
+      playerHand[playerIndex].suit;
     // Calls new line back to the DOM
     document.querySelector("#random-result").appendChild(newLi);
   }
+  playerTotal = parseInt(playerHand[0].value + playerHand[1].value, 10);
+  const newLi2 = document.createElement("li");
+  newLi2.textContent = playerTotal;
+  document.querySelector("#random-result").appendChild(newLi2);
   // debug messages
   console.log(dealerHand);
   console.log(playerHand);
 
-  //   Total value of player's hand
-  let playerTotal = playerHand.value;
-  for (let index = 0; index < playerHand.length; index++) {
-    console.log(playerTotal);
+  // SUPPOSE to append player's total under hand
+  // const newLi = document.createElement("li");
+  // newLi.textContent = "player Total is" + playerTotal; // TODO figure out why it is pushed to the dom as a null element
+  // document.querySelector("random-result").appendChild(newLi);
+};
+
+const hitMe = () => {
+  // Total value of player's hand
+  playerTotal = parseInt(playerHand[0].value + playerHand[1].value, 10);
+  console.log(playerTotal);
+  // Pops player's 3rd card
+  for (let hitIndex = 0; hitIndex < 1; hitIndex++) {
+    playerHand.push(deck.pop());
+    playerValue = playerTotal + parseInt(playerHand[2].value, 10);
+    // debug msg
+    console.log(playerValue);
+    if (playerValue > 21) {
+      console.log("The player busted");
+      // Creates element in the Dom named newLi
+      const newLi = document.createElement("li");
+      // New line writes the player's hand calling the index values each iteration
+      newLi.textContent = "Player has busted!";
+      // Calls new line back to the DOM
+      document.querySelector("#random-result").appendChild(newLi);
+    }
+  }
+
+  // Creates element in the Dom named newLi
+  const newLi = document.createElement("li");
+  const newLi2 = document.createElement("li");
+  // New line writes the player's hand calling the index values each iteration
+  newLi.textContent =
+    "The player has " + playerHand[2].rank + " of " + playerHand[2].suit;
+  newLi2.textContent = playerValue;
+  // Calls new line back to the DOM
+  document.querySelector("#random-result").appendChild(newLi);
+  document.querySelector("#random-result").appendChild(newLi2);
+};
+
+let exitGame = () => {
+  dealerTotal = parseInt(dealerHand[0].value + dealerHand[1].value, 10);
+  // if dealerHand values are less than 17, push another card
+  if (dealerTotal < 17) {
+    dealerHand.push(deck.pop());
+    dealerValue = dealerTotal + parseInt(dealerHand[2].value, 10);
+    console.log(dealerValue);
+    // Creates element in the Dom named newLi
+    const newLi = document.createElement("li");
+    // Create 2nd line element for total points of dealersHand
+    const newLi2 = document.createElement("li");
+    const newLi3 = document.createElement("li");
+    const newLi4 = document.createElement("li");
+    // New line writes the player's hand calling the index values each iteration
+    newLi.textContent =
+      "The dealer has " + dealerHand[0].rank + " of " + dealerHand[0].suit;
+    newLi2.textContent = +dealerHand[1].rank + " of " + dealerHand[1].suit;
+    newLi3.textContent =
+      "and a " + dealerHand[2].rank + " of " + dealerHand[2].suit;
+    newLi4.textContent = dealerValue;
+    // Calls new line back to the DOM
+    document.querySelector("#random-result").appendChild(newLi);
+    document.querySelector("#random-result").appendChild(newLi2);
+    document.querySelector("#random-result").appendChild(newLi3);
+    document.querySelector("#random-result").appendChild(newLi4);
+    playAgain();
+  } else if ((dealerTotal = 21)) {
+    console.log(dealerTotal);
+    // Creates element in the Dom named newLi
+    const newLi = document.createElement("li");
+    // Create 2nd line element for total points of dealersHand
+    const newLi2 = document.createElement("li");
+    const newLi3 = document.createElement("li");
+    // New line writes the player's hand calling the index values each iteration
+    newLi.textContent =
+      "The dealer has " + dealerHand[0].rank + " of " + dealerHand[0].suit;
+    newLi2.textContent =
+      "and a " + dealerHand[1].rank + " of " + dealerHand[1].suit;
+    newLi3.textContent = dealerTotal;
+    // Calls new line back to the DOM
+    document.querySelector("#random-result").appendChild(newLi);
+    document.querySelector("#random-result").appendChild(newLi2);
+    document.querySelector("#random-result").appendChild(newLi3);
+    playAgain();
+    return;
+  } else {
+    console.log("Dealer bust");
+    // Creates element in the Dom named newLi
+    const newLi = document.createElement("li");
+    // New line writes the player's hand calling the index values each iteration
+    newLi.textContent = "The dealer busted! Player wins!";
+    // Calls new line back to the DOM
+    document.querySelector("#random-result").appendChild(newLi);
+    playAgain();
   }
 };
+
+const playAgain = () => {
+  const newLi = document.createElement("button");
+  button.addEventListener("click", window.location.reload()); // TODO fix play again button
+  document.querySelector("#random-result").appendChild(newLi);
+  window.location.reload();
+}
 
 // mainline logic
 const main = () => {
@@ -107,25 +219,7 @@ const main = () => {
   cardsDealt();
 };
 
-const hitMe = () => {
-	for (let playerIndex = 0; playerIndex < 1; playerIndex++) {
-		playerHand.push(deck.pop());
-		console.log(playerHand);
-	}
-	// if dealerHand values are less than 17, push another card
-		// if dealerHand values are over 21, dealer loses and breaks out of function revealing cards
-	// if playerHand values are over 21, the player loses
-	// else continue
-		// if playerHand values are greater than dealerHand values, then player wins
-		// if dealerHand values are less than playerHand values, then dealer wins
-		// else game ends in tie
-}
-
-// const exitGame = () = {
-// 	clear the bucket
-// }
-
 // Event listeners
 document.querySelector(".start-button").addEventListener("click", main);
 document.querySelector(".hit-button").addEventListener("click", hitMe);
-// document.querySelector("stand-button").addEventListener("click", exitGame)
+document.querySelector(".stand-button").addEventListener("click", exitGame);
