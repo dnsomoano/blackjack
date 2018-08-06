@@ -7,4 +7,4 @@
     - if player array > 1, pop a 3rd card
 - [X] When the player stands, the house will reveal its hand and hit (i.e. draw cards) until they have 17 or more.
 - [X] If either the house or the player bust, they lose.
-- [ ] Create option to play again.
+- [X] Create option to play again.

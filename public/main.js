@@ -29,33 +29,49 @@ const ranks = [
 const valueArray = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
 
 // Game arrays
-let deck = [];
+const deck = [];
 const playerHand = [];
 const dealerHand = [];
 let playerTotal;
 let dealerTotal;
 
+const init = () => {
+  playerHand.splice(0, playerHand.length);
+  dealerHand.splice(0, dealerHand.length);
+  playerTotal = 0;
+  dealerTotal = 0;
+  deck.splice(0, deck.length);
+};
+init();
 // const getPlayerTotal = () => {
 //   let playerTotal = playerHand[0].value + playerHand[1].value;
 // }
 
+const playAgain = () => {
+  const playAgainButton = document.createElement("button");
+  playAgainButton.addEventListener("click", function () {
+    window.location.reload();
+  }); // TODO fix play again button
+  playAgainButton.textContent = "Play Again?";
+  document.querySelector("#random-result").appendChild(playAgainButton);
+  // window.location.reload();
+};
+  
 // Creates array of deck
 const createDeck = () => {
   // First loop = 13 * Second loop 4 = 52 loops
   // First loop
-  deck = [];
+  deck.splice(0, deck.length);
   for (let i = 0; i < ranks.length; i++) {
     // second loop
     for (let j = 0; j < suits.length; j++) {
       // Object is created within deck array, creating an object array
-      deck.push(
-        ({
-          // value equals the corresponding value within valueArray
-          value: valueArray[i],
-          rank: ranks[i],
-          suit: suits[j]
-        })
-      );
+      deck.push({
+        // value equals the corresponding value within valueArray
+        value: valueArray[i],
+        rank: ranks[i],
+        suit: suits[j]
+      });
     }
   }
   // Call list of cards
@@ -119,11 +135,12 @@ const hitMe = () => {
   // Total value of player's hand
   playerTotal = parseInt(playerHand[0].value + playerHand[1].value, 10);
   console.log(playerTotal);
+  let playerValue;
   // Pops player's 3rd card
   // hitIndex = document.querySelector(".hit-button").value; // TODO if player presses hit button twice, hit again
   for (let hitIndex = 0; hitIndex < 1; hitIndex++) {
     playerHand.push(deck.pop());
-    let playerValue = playerTotal + parseInt(playerHand[2].value, 10);
+    playerValue = playerTotal + parseInt(playerHand[2].value, 10);
     // debug msg
     console.log(playerValue);
     if (playerValue > 21) {
@@ -147,6 +164,7 @@ const hitMe = () => {
   // Calls new line back to the DOM
   document.querySelector("#random-result").appendChild(newLi);
   document.querySelector("#random-result").appendChild(newLi2);
+  playAgain();
 };
 
 let exitGame = () => {
@@ -176,7 +194,7 @@ let exitGame = () => {
     document.querySelector("#random-result").appendChild(newLi3);
     document.querySelector("#random-result").appendChild(newLi4);
     // playAgain();
-  } else if (dealerTotal = blackJack) {
+  } else if ((dealerTotal = blackJack)) {
     console.log(dealerTotal);
     // Creates element in the Dom named newLi
     const newLi = document.createElement("li");
@@ -193,7 +211,6 @@ let exitGame = () => {
     document.querySelector("#random-result").appendChild(newLi);
     document.querySelector("#random-result").appendChild(newLi2);
     document.querySelector("#random-result").appendChild(newLi3);
-    // playAgain();
   } else {
     console.log("Dealer bust");
     // Creates element in the Dom named newLi
@@ -202,16 +219,9 @@ let exitGame = () => {
     newLi.textContent = "The dealer busted! Player wins!";
     // Calls new line back to the DOM
     document.querySelector("#random-result").appendChild(newLi);
-    // playAgain();
   }
+  playAgain();
 };
-
-// const playAgain = () => {
-//   const newLi = document.createElement("button");
-//   button.addEventListener("click", window.location.reload()); // TODO fix play again button
-//   document.querySelector("#random-result").appendChild(newLi);
-//   window.location.reload();
-// }
 
 // mainline logic
 const main = () => {
