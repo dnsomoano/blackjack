@@ -1,32 +1,14 @@
-// const main = () => {
-//   document.querySelector('h1').textContent += '?'
-// }
+// "use strict";
 
-// document.addEventListener('DOMContentLoaded', main)
-
-// const main = () => {
-//   document.querySelector('h1').textContent += '?'
+// class Players {
+//   constructor(name) {
+//     this.name = playerName;
+//     name: getPlayer,
+//     suit: getSuit,
+//     rank: getRank
+//   }
 // }
-// document.addEventListener('DOMContentLoaded', main)
-// Starting arrays
-const suits = ["clubs", "diamonds", "hearts", "spades"];
-const ranks = [
-  "Ace",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "10",
-  "Jack",
-  "Queen",
-  "King"
-];
 // Parallel array
-const valueArray = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
 
 // Game arrays
 const deck = [];
@@ -36,84 +18,113 @@ let playerTotal;
 let dealerTotal;
 
 const init = () => {
+  deck.splice(0, deck.length);
   playerHand.splice(0, playerHand.length);
   dealerHand.splice(0, dealerHand.length);
   playerTotal = 0;
   dealerTotal = 0;
-  deck.splice(0, deck.length);
 };
-init();
+
 // const getPlayerTotal = () => {
 //   let playerTotal = playerHand[0].value + playerHand[1].value;
 // }
 
-const playAgain = () => {
-  const playAgainButton = document.createElement("button");
-  playAgainButton.addEventListener("click", function () {
-    window.location.reload();
-  }); // TODO fix play again button
-  playAgainButton.textContent = "Play Again?";
-  document.querySelector("#random-result").appendChild(playAgainButton);
-  // window.location.reload();
-};
-  
+// const playAgain = () => {
+//   const playAgainButton = document.createElement("button");
+//   playAgainButton.addEventListener("click", function() {
+//     window.location.reload();
+//   }); // TODO fix play again button
+//   playAgainButton.textContent = "Play Again?";
+//   document.querySelector("#random-result").appendChild(playAgainButton);
+//   // window.location.reload();
+// };
 // Creates array of deck
 const createDeck = () => {
-  // First loop = 13 * Second loop 4 = 52 loops
-  // First loop
-  deck.splice(0, deck.length);
-  for (let i = 0; i < ranks.length; i++) {
-    // second loop
-    for (let j = 0; j < suits.length; j++) {
-      // Object is created within deck array, creating an object array
+  const suits = ["clubs", "diamonds", "hearts", "spades"];
+  const ranks = [
+    { display: "Ace", value: 11 },
+    { display: "2", value: 2 },
+    { display: "3", value: 3 },
+    { display: "4", value: 4 },
+    { display: "5", value: 5 },
+    { display: "6", value: 6 },
+    { display: "7", value: 7 },
+    { display: "8", value: 8 },
+    { display: "9", value: 9 },
+    { display: "10", value: 10 },
+    { display: "Jack", value: 10 },
+    { display: "Queen", value: 10 },
+    { display: "King", value: 10 }
+  ];
+  // For each suit in suits(array), making a new rank and a new index
+  suits.forEach(suit => {
+    console.log(suit);
+    ranks.forEach((rank) => {
       deck.push({
-        // value equals the corresponding value within valueArray
-        value: valueArray[i],
-        rank: ranks[i],
-        suit: suits[j]
+        // Object created w suit value = suit, rank = rank.display, & rank = rank.value
+        suit: suit,
+        rank: rank.display,
+        value: rank.value
       });
-    }
-  }
+    });
+  });
   // Call list of cards
   console.log(deck);
   // Call length of array to confirm 52 cards
   console.log(deck.length);
 };
+// Fisher-Yates Shuffle // TODO: broken
+// Let shuffle = () => {
+//   deck.forEach(card => {
+//     const nextCard = Math.floor(Math.random() * card);
+//     const bucket = deck[card];
+//     deck[card] = deck[nextCard];
+//     deck[nextCard] = bucket;
+//   });
+//   console.log(deck);
+// };
 
-// Fisher-Yates Shuffle
-let shuffle = () => {
-  // For loop will loop 52x
-  for (let i = 0; i < deck.length; i++) {
-    const j = Math.floor(Math.random() * i);
-    // temporary bucket for array deck
-    const temp = deck[j];
-    // value which dumped into temporary is overwritten
-    deck[j] = deck[i];
-    // temporary bucket overwrites the previous array that overwrote
-    deck[i] = temp;
-  }
-};
+// let shuffle = () => {
+//   // For loop will loop 52x
+//   for (let i = 0; i < deck.length; i++) {
+//     const j = Math.floor(Math.random() * i);
+//     // temporary bucket for array deck
+//     const temp = deck[i];
+//     // value which dumped into temporary is overwritten
+//     deck[i] = deck[j];
+//     // temporary bucket overwrites the previous array that overwrote
+//     deck[j] = temp;
+//   }
+//   console.log(deck);
+// };
+
+// array.forEach(element => {});
 
 // First hit for both players
 const cardsDealt = () => {
-  // Loop for player's hand
-  for (let playerIndex = 0; playerIndex < 2; playerIndex++) {
-    // Loop for dealer's hand
-    for (let dealerIndex = 0; dealerIndex < 1; dealerIndex++) {
-      // pop, then push to the dealer's hand
-      dealerHand.push(deck.pop());
-    }
-    // pop, then push to the player's hand
-    playerHand.push(deck.pop());
-    // now playerTotal is initiated
+    //   // Loop for player's hand
+    //   for (let playerIndex = 0; playerIndex < 2; playerIndex++) {
+    //     // Loop for dealer's hand
+    //     for (let dealerIndex = 0; dealerIndex < 1; dealerIndex++) {
+    //       // pop, then push to the dealer's hand
+    //       dealerHand.push(deck.pop());
+    //     }
+      //     // pop, then push to the player's hand
+    //     playerHand.push(deck.pop());
+
+    let Hands = [];
+    Hands = deck.filter(card => {
+      return (playerHand.push(deck.pop(2)) & dealerHand.push(deck.pop(2)));
+    })
+
     // Creates element in the Dom named newLi
     const newLi = document.createElement("li");
     // New line writes the player's hand calling the index values(playerIndex) each iteration
     newLi.textContent =
       "The player has " +
-      playerHand[playerIndex].rank +
+      playerHand[card].rank +
       " of " +
-      playerHand[playerIndex].suit;
+      playerHand[card].suit;
     // Calls new line back to the DOM
     document.querySelector("#random-result").appendChild(newLi);
   }
@@ -164,7 +175,7 @@ const hitMe = () => {
   // Calls new line back to the DOM
   document.querySelector("#random-result").appendChild(newLi);
   document.querySelector("#random-result").appendChild(newLi2);
-  playAgain();
+  // playAgain();
 };
 
 let exitGame = () => {
@@ -220,7 +231,7 @@ let exitGame = () => {
     // Calls new line back to the DOM
     document.querySelector("#random-result").appendChild(newLi);
   }
-  playAgain();
+  // playAgain();
 };
 
 // mainline logic
@@ -231,6 +242,7 @@ const main = () => {
 };
 
 // Event listeners
+// init();
 document.querySelector(".start-button").addEventListener("click", main);
 document.querySelector(".hit-button").addEventListener("click", hitMe);
 document.querySelector(".stand-button").addEventListener("click", exitGame);
